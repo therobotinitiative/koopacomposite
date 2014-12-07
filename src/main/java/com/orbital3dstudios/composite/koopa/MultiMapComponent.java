@@ -30,33 +30,11 @@ public interface MultiMapComponent<V extends CompositeComponent> extends KeyValu
 	void put(Class<? extends V> key, Set<V> values);
 
 	/**
-	 * Stores single value under the given key.
-	 * 
-	 * @param key
-	 *            Key under which the value is stored
-	 * @param value
-	 *            The value to store
-	 */
-	void put(Class<? extends V> key, V value);
-
-	/**
 	 * @param key
 	 *            Key under which the stored data is retrieved from
 	 * @return {@link Set} of components under the key
 	 */
 	Set<V> get(Class<? extends V> key);
-
-	/**
-	 * Gets the first value from the set. The set is not guaranteed to be sorted
-	 * so the result may vary. If storing of a single value is used for the key
-	 * then that value is returned.
-	 * 
-	 * @param key
-	 *            Key under which the stored data is retrieved from
-	 * @return First value returned from a set, sorting of a set is not
-	 *         guaranteed, or null if no value is stored
-	 */
-	V getFirstValue(Class<? extends V> key);
 
 	/**
 	 * @return All values in the composition
