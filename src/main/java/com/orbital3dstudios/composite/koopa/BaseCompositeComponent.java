@@ -1,16 +1,13 @@
 package com.orbital3dstudios.composite.koopa;
 
-import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
 /**
  * Base interface for component composition managing API.
  * 
  * @author Mikko Sirén
  * 
- * @param <E>
- *            Type of the element composed in this composition
  */
-public interface BaseCompositeComponent<E extends CompositeComponent>
+public interface BaseCompositeComponent
 {
 	/**
 	 * @return The number of composite components in this composition

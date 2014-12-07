@@ -12,8 +12,7 @@ import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
  * @param <E>
  *            Type of the component in the composition
  */
-public final class CompositionMultiMapComponent<K extends Class<? extends CompositeComponent>, E extends CompositeComponent> extends
-		AbstractMultiMapComposite<K, E>
+public final class CompositionMultiMapComponent<E extends CompositeComponent> extends AbstractMultiMapComposite<E>
 {
 	// Nothing
 }

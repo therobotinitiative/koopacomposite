@@ -7,7 +7,7 @@ import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
 public abstract class AbstractCollectionComposite<E extends CompositeComponent> implements CollectionComponent<E>
 {
-	private final Collection<E> setti = createCollection();
+	private final Collection<E> backEndCollection = createCollection();
 
 	/**
 	 * @return Instance of {@Collection} used by this
@@ -17,27 +17,31 @@ public abstract class AbstractCollectionComposite<E extends CompositeComponent> 
 
 	protected Collection<E> getCollection()
 	{
-		return setti;
+		return backEndCollection;
 	}
 
 	public int size()
 	{
-		return setti.size();
+		return backEndCollection.size();
 	}
 
 	public boolean isEmpty()
 	{
-		return setti.isEmpty();
+		return backEndCollection.isEmpty();
 	}
 
 	public void add(E component)
 	{
-		setti.add(component);
+		if (component == null)
+		{
+			throw new NullPointerException("The component cannot be null");
+		}
+		backEndCollection.add(component);
 	}
 
 	public boolean remove(E component)
 	{
-		return setti.remove(component);
+		return backEndCollection.remove(component);
 	}
 
 	public void remove(int index)
@@ -47,24 +51,24 @@ public abstract class AbstractCollectionComposite<E extends CompositeComponent> 
 
 	public E get(int index)
 	{
-		if (index < 0 || index >= setti.size())
+		if (index < 0 || index >= backEndCollection.size())
 		{
-			throw new IndexOutOfBoundsException("Index " + index + " must be within range [0," + (setti.size() - 1) + "]");
+			throw new IndexOutOfBoundsException("Index " + index + " must be within range [0," + (backEndCollection.size() - 1) + "]");
 		}
 		// The Java collections library is type safe so the type safety is
 		// already guaranteed at that level.
 		@SuppressWarnings("unchecked")
-		E returnValue = (E) setti.toArray()[index];
+		E returnValue = (E) backEndCollection.toArray()[index];
 		return returnValue;
 	}
 
 	public boolean contains(E component)
 	{
-		return setti.contains(component);
+		return backEndCollection.contains(component);
 	}
 
 	public void removeAll()
 	{
-		setti.clear();
+		backEndCollection.clear();
 	}
 }

@@ -18,18 +18,44 @@ import com.orbital3dstudios.composite.koopa.component.LeafComponent;
  * to have the component management capabilities and also to be one of the
  * composed components.
  * 
+ * Without type parameter this interface would be bound to
+ * {@link CompositeComponent} type and would not be that type safe. In case
+ * there are several type hierarchies that are not related then there would the
+ * risk of having wrong type of component in the composition and casting would
+ * cause {@link ClassCastException}.
+ * 
+ * The code below shows two type interfaces of domain objects that are not
+ * related and create their own type hierarchy:
+ * 
+ * <code>
+ * public interface DomainTypeOne extends CompositeComponent ...
+ * public interface DomainTypeTwo extends CompositeComponent ...
+ * </code>
+ * 
+ * From the code example above using the interface as the bound for the type
+ * parameter would guarantee better type safety for both kind of domain objects.
+ * The type parameter would bound the components to either of the domain object
+ * types:
+ * 
+ * <code>
+ * public class One implements CollectionComponent<DomainTypeOne> ...
+ * public class Two implements CollectionComponent<DomainTypeTwo> ...
+ * </code>
+ * 
  * @author Mikko Sirén
  * 
  * @param <E>
  *            Type of the component, must be {@link CompositeComponent}
  */
-public interface CollectionComponent<E extends CompositeComponent> extends BaseCompositeComponent<E>
+public interface CollectionComponent<E extends CompositeComponent> extends BaseCompositeComponent
 {
 	/**
 	 * Add component to the component composition.
 	 * 
 	 * @param component
 	 *            {@link E} component to add
+	 * @throws NullPointerException
+	 *             If the added component is null
 	 */
 	void add(E component);
 

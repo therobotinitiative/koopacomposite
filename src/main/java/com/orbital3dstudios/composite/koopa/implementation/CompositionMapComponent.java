@@ -14,15 +14,14 @@ import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
  * 
  * @param <K>
  *            Type of the key
- * @param <E>
+ * @param <V>
  *            Type of the component in the composition
  */
-public final class CompositionMapComponent<K extends Class<? extends CompositeComponent>, E extends CompositeComponent> extends AbstractMapComposite<K, E>
+public final class CompositionMapComponent<V extends CompositeComponent> extends AbstractMapComposite<V>
 {
-
 	@Override
-	protected Map<K, E> createMap()
+	protected Map<Class<? extends V>, V> createMap()
 	{
-		return new HashMap<K, E>();
+		return new HashMap<Class<? extends V>, V>();
 	}
 }

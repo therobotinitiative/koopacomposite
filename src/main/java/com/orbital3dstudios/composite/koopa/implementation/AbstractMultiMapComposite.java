@@ -9,86 +9,78 @@ import java.util.Set;
 import com.orbital3dstudios.composite.koopa.MultiMapComponent;
 import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
-public abstract class AbstractMultiMapComposite<K extends Class<? extends CompositeComponent>, E extends CompositeComponent> implements MultiMapComponent<K, E>
+public class AbstractMultiMapComposite<V extends CompositeComponent> implements MultiMapComponent<V>
 {
-	private final Map<K, Set<E>> mappi = createMultiMap();
+	private final Map<Class<? extends V>, Set<V>> backEndMap = new HashMap<Class<? extends V>, Set<V>>();
 
-	private Map<K, Set<E>> createMultiMap()
+	protected Map<Class<? extends V>, Set<V>> getMap()
 	{
-		return new HashMap<K, Set<E>>();
+		return backEndMap;
 	}
 
-	protected Map<K, Set<E>> getMultiMap()
+	public void put(Class<? extends V> key, Set<V> values)
 	{
-		return mappi;
+		getMap().put(key, values);
 	}
 
-	public int size()
+	public void put(Class<? extends V> key, V value)
 	{
-		return mappi.size();
-	}
-
-	public boolean isEmpty()
-	{
-		return mappi.isEmpty();
-	}
-
-	public void removeAll()
-	{
-		mappi.clear();
-	}
-
-	public void put(K key, Set<E> values)
-	{
-		mappi.put(key, values);
-	}
-
-	public void put(K key, E value)
-	{
-		Set<E> valueSet = mappi.get(key);
+		Set<V> valueSet = getMap().get(key);
 		if (valueSet == null)
 		{
-			valueSet = new HashSet<E>();
-			mappi.put(key, valueSet);
+			valueSet = new HashSet<V>();
+			getMap().put(key, valueSet);
 		}
 		valueSet.add(value);
 	}
 
-	public Set<E> get(K key)
+	public Set<V> get(Class<? extends V> key)
 	{
-		return mappi.get(key);
+		return getMap().get(key);
 	}
 
-	public E getFirstValue(K key)
+	public V getFirstValue(Class<? extends V> key)
 	{
-		if (mappi.containsKey(key))
+		if (getMap().containsKey(key) && !getMap().get(key).isEmpty())
 		{
-			if (!mappi.get(key).isEmpty())
-			{
-				return mappi.get(key).iterator().next();
-			}
+			return getMap().get(key).iterator().next();
 		}
 		return null;
 	}
 
-	public boolean remove(K key)
+	public Collection<Set<V>> values()
 	{
-		return mappi.remove(key) != null ? true : false;
+		return getMap().values();
 	}
 
-	public boolean hasKey(K key)
+	public boolean remove(Class<? extends V> key)
 	{
-		return mappi.containsKey(key);
+		return getMap().remove(key) != null ? true : false;
 	}
 
-	public Set<K> keys()
+	public boolean hasKey(Class<? extends V> key)
 	{
-		return mappi.keySet();
+		return getMap().containsKey(key);
 	}
 
-	public Collection<Set<E>> values()
+	public Set<Class<? extends V>> keys()
 	{
-		return mappi.values();
+		return getMap().keySet();
+	}
+
+	public int size()
+	{
+		return getMap().size();
+	}
+
+	public boolean isEmpty()
+	{
+		return getMap().isEmpty();
+	}
+
+	public void removeAll()
+	{
+		getMap().clear();
 	}
 
 }

@@ -1,73 +1,33 @@
 package com.orbital3dstudios.composite.koopa.implementation;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import com.orbital3dstudios.composite.koopa.MapComponent;
 import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
-public abstract class AbstractMapComposite<K extends Class<? extends CompositeComponent>, E extends CompositeComponent> implements MapComponent<K, E>
+public abstract class AbstractMapComposite<V extends CompositeComponent> extends AbstractKeyValueComponent<V> implements MapComponent<V>
 {
-	private final Map<K, E> mappi = createMap();
-
-	/**
-	 * @return Instantiated class belonging to the [@link Map} hierarchy used as
-	 *         the composition back end
-	 */
-	protected abstract Map<K, E> createMap();
-
-	/**
-	 * @return {@link Map} that is the composition back end
-	 */
-	protected Map<K, E> getMap()
+	@Override
+	protected Map<Class<? extends V>, V> createMap()
 	{
-		return mappi;
+		return new HashMap<Class<? extends V>, V>();
 	}
 
-	public int size()
+	public void put(Class<? extends V> key, V value)
 	{
-		return mappi.size();
+		getMap().put(key, value);
 	}
 
-	public boolean isEmpty()
+	public V get(Class<? extends V> key)
 	{
-		return mappi.isEmpty();
+		return getMap().get(key);
 	}
 
-	public void removeAll()
+	public Collection<V> values()
 	{
-		mappi.clear();
-	}
-
-	public void put(K key, E value)
-	{
-		mappi.put(key, value);
-	}
-
-	public E get(K key)
-	{
-		return mappi.get(key);
-	}
-
-	public boolean remove(K key)
-	{
-		return mappi.remove(key) != null ? true : false;
-	}
-
-	public boolean hasKey(K key)
-	{
-		return mappi.containsKey(key);
-	}
-
-	public Set<K> keys()
-	{
-		return mappi.keySet();
-	}
-
-	public Collection<E> values()
-	{
-		return mappi.values();
+		return getMap().values();
 	}
 
 }

@@ -14,10 +14,10 @@ import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
  * 
  * @param <K>
  *            Type of the key
- * @param <E>
+ * @param <V>
  *            Type of the value
  */
-public interface MultiMapComponent<K extends Class<? extends CompositeComponent>, E extends CompositeComponent> extends BaseCompositeComponent<E>
+public interface MultiMapComponent<V extends CompositeComponent> extends KeyValueComponent<V>
 {
 	/**
 	 * Store the set of values under the key.
@@ -27,7 +27,7 @@ public interface MultiMapComponent<K extends Class<? extends CompositeComponent>
 	 * @param values
 	 *            {@link Set} of values to store
 	 */
-	void put(K key, Set<E> values);
+	void put(Class<? extends V> key, Set<V> values);
 
 	/**
 	 * Stores single value under the given key.
@@ -37,14 +37,14 @@ public interface MultiMapComponent<K extends Class<? extends CompositeComponent>
 	 * @param value
 	 *            The value to store
 	 */
-	void put(K key, E value);
+	void put(Class<? extends V> key, V value);
 
 	/**
 	 * @param key
 	 *            Key under which the stored data is retrieved from
 	 * @return {@link Set} of components under the key
 	 */
-	Set<E> get(K key);
+	Set<V> get(Class<? extends V> key);
 
 	/**
 	 * Gets the first value from the set. The set is not guaranteed to be sorted
@@ -56,34 +56,11 @@ public interface MultiMapComponent<K extends Class<? extends CompositeComponent>
 	 * @return First value returned from a set, sorting of a set is not
 	 *         guaranteed, or null if no value is stored
 	 */
-	E getFirstValue(K key);
-
-	/**
-	 * Removes the values stored under the given key.
-	 * 
-	 * @param key
-	 *            Key under which the stored values are removed
-	 * @return true if values were removed
-	 */
-	boolean remove(K key);
-
-	/**
-	 * Checks if the composition has the given key stored.
-	 * 
-	 * @param key
-	 *            Key which existence is checked
-	 * @return true if the key is in the composition
-	 */
-	boolean hasKey(K key);
-
-	/**
-	 * @return All keys in the composition
-	 */
-	Set<K> keys();
+	V getFirstValue(Class<? extends V> key);
 
 	/**
 	 * @return All values in the composition
 	 */
-	Collection<Set<E>> values();
+	Collection<Set<V>> values();
 
 }

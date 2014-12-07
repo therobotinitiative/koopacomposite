@@ -12,12 +12,5 @@
   		<version>1.6.0</version>
   		<scope>test</scope>
   	</dependency>
-  	<dependency>
-  		<groupId>org.powermock</groupId>
-  		<artifactId>powermock-api</artifactId>
-  		<version>1.6.0</version>
-  		<type>pom</type>
-  		<scope>test</scope>
-  	</dependency>
   </dependencies>
 </project>
