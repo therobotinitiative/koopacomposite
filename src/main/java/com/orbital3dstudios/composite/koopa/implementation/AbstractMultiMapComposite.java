@@ -2,6 +2,7 @@ package com.orbital3dstudios.composite.koopa.implementation;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -60,6 +61,21 @@ public class AbstractMultiMapComposite<V extends CompositeComponent> implements 
 	public void removeAll()
 	{
 		getMap().clear();
+	}
+
+	public void add(Class<? extends V> key, V value)
+	{
+		if (!value.getClass().isAssignableFrom(key))
+		{
+			throw new IllegalArgumentException("Key and value types does not match");
+		}
+		Set<V> values = getMap().get(key);
+		if (values == null)
+		{
+			values = new HashSet<V>();
+			getMap().put(key, values);
+		}
+		values.add(value);
 	}
 
 }

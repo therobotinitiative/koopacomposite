@@ -17,6 +17,10 @@ public abstract class AbstractMapComposite<V extends CompositeComponent> extends
 
 	public void put(Class<? extends V> key, V value)
 	{
+		if (!value.getClass().isAssignableFrom(key))
+		{
+			throw new IllegalArgumentException("Key and value type must match");
+		}
 		getMap().put(key, value);
 	}
 

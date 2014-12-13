@@ -8,7 +8,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import com.orbital3dstudios.composite.koopa.SetComponent;
-import com.orbital3dstudios.composite.koopa.TestCompositeComponent;
+import com.orbital3dstudios.composite.koopa.TypeOne;
+import com.orbital3dstudios.composite.koopa.TypeOneCompositeComponent;
+import com.orbital3dstudios.composite.koopa.TypeTwoCompositeComponent;
 import com.orbital3dstudios.composite.koopa.implementation.AbstractSetComposite;
 
 /**
@@ -25,12 +27,12 @@ import com.orbital3dstudios.composite.koopa.implementation.AbstractSetComposite;
 @RunWith(JUnit4.class)
 public class TestAbstractSetComponent
 {
-	private SetComponent<TestCompositeComponent> test;
+	private SetComponent<TypeOne> test;
 
 	@Before
 	public void setup()
 	{
-		test = new AbstractSetComposite<TestCompositeComponent>()
+		test = new AbstractSetComposite<TypeOne>()
 		{
 			// Instantiate with anonymous inner-class for testing
 		};
@@ -51,7 +53,7 @@ public class TestAbstractSetComponent
 	@Test
 	public void testAddComponent()
 	{
-		test.add(new TestCompositeComponent());
+		test.add(new TypeOneCompositeComponent());
 	}
 
 	@Test
@@ -65,7 +67,7 @@ public class TestAbstractSetComponent
 	{
 		for (int i = 0; i < 5; i++)
 		{
-			test.add(new TestCompositeComponent());
+			test.add(new TypeOneCompositeComponent());
 		}
 		Assert.assertFalse("Not empty after adding", test.isEmpty());
 	}
@@ -82,7 +84,7 @@ public class TestAbstractSetComponent
 		int numberOfComponents = 10;
 		for (int i = 0; i < numberOfComponents; i++)
 		{
-			test.add(new TestCompositeComponent());
+			test.add(new TypeOneCompositeComponent());
 		}
 		Assert.assertEquals("Size expected", numberOfComponents, test.size());
 	}
@@ -90,13 +92,13 @@ public class TestAbstractSetComponent
 	@Test
 	public void testRemoveNothingOnTheSet()
 	{
-		Assert.assertFalse("Remove from empty", test.remove(new TestCompositeComponent()));
+		Assert.assertFalse("Remove from empty", test.remove(new TypeOneCompositeComponent()));
 	}
 
 	@Test
 	public void testRemoveJustAdded()
 	{
-		TestCompositeComponent comp = new TestCompositeComponent();
+		TypeOneCompositeComponent comp = new TypeOneCompositeComponent();
 		test.add(comp);
 		Assert.assertTrue("Remove just added", test.remove(comp));
 	}
@@ -112,7 +114,7 @@ public class TestAbstractSetComponent
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			test.add(new TestCompositeComponent());
+			test.add(new TypeOneCompositeComponent());
 		}
 		test.remove(1);
 	}
@@ -126,8 +128,8 @@ public class TestAbstractSetComponent
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void testGetOutOfRangeIndexWithTwoComponents()
 	{
-		test.add(new TestCompositeComponent());
-		test.add(new TestCompositeComponent());
+		test.add(new TypeOneCompositeComponent());
+		test.add(new TypeOneCompositeComponent());
 		test.get(10);
 	}
 
@@ -140,8 +142,24 @@ public class TestAbstractSetComponent
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void testRemoveOutOfRangeIndexWithTwoElements()
 	{
-		test.add(new TestCompositeComponent());
-		test.add(new TestCompositeComponent());
+		test.add(new TypeOneCompositeComponent());
+		test.add(new TypeOneCompositeComponent());
 		test.remove(10);
+	}
+
+	@Test(expected = ClassCastException.class)
+	public void testAddWrongTypeComponentByCasting()
+	{
+		// This is strange behaviour of Java (6 only?). TypeOne and TypeTwo has
+		// common super-interface the CompositeComponent. But still cast does
+		// not use that type and
+		// TypeOne and TypeTwo are not related in any other way. Without looking
+		// into it it seems like the cast is done in several phases. Casting
+		// TypeTwo CompositeComponent
+		// works and casting from CompositeComponent to TypeOne also works. If
+		// it is true that Java 6 allows this then this is a great weakness in
+		// the generics which are
+		// originally done to minimize the runtime ClassCastException.
+		test.add((TypeOne) new TypeTwoCompositeComponent());
 	}
 }

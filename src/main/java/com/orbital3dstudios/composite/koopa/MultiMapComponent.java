@@ -20,6 +20,18 @@ import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 public interface MultiMapComponent<V extends CompositeComponent> extends KeyValueComponent<V>
 {
 	/**
+	 * Adds value to the multimap under the given key.
+	 * 
+	 * @param key
+	 *            Key under which the value is added
+	 * @param value
+	 *            Value to store
+	 * @throws IllegalArgumentException
+	 *             If the key and value type does not match
+	 */
+	void add(Class<? extends V> key, V value);
+
+	/**
 	 * Store the set of values under the key.
 	 * 
 	 * @param key

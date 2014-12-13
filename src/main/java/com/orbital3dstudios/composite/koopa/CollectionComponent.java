@@ -56,6 +56,8 @@ public interface CollectionComponent<E extends CompositeComponent> extends BaseC
 	 *            {@link E} component to add
 	 * @throws NullPointerException
 	 *             If the added component is null
+	 * @throws ClassCastException
+	 *             If the given parameter is incorrect type
 	 */
 	void add(E component);
 
