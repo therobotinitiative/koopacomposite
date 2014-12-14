@@ -150,16 +150,13 @@ public class TestAbstractSetComponent
 	@Test(expected = ClassCastException.class)
 	public void testAddWrongTypeComponentByCasting()
 	{
-		// This is strange behaviour of Java (6 only?). TypeOne and TypeTwo has
-		// common super-interface the CompositeComponent. But still cast does
-		// not use that type and
-		// TypeOne and TypeTwo are not related in any other way. Without looking
-		// into it it seems like the cast is done in several phases. Casting
-		// TypeTwo CompositeComponent
-		// works and casting from CompositeComponent to TypeOne also works. If
-		// it is true that Java 6 allows this then this is a great weakness in
-		// the generics which are
-		// originally done to minimize the runtime ClassCastException.
+		// Apparently this is legal cast I think it's due to JLS 5.5.1 (Java
+		// SE7), so we test that this does
+		// cause ClassCastException during runtime. The library relies on the
+		// fact that the user of the library
+		// takes care about these kind of things. If the user needs to
+		// extensively cast then something could
+		// be wrong in the way the library is used.
 		test.add((TypeOne) new TypeTwoCompositeComponent());
 	}
 }
