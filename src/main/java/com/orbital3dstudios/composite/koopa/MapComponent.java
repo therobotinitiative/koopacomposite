@@ -21,8 +21,6 @@ public interface MapComponent<V extends CompositeComponent> extends KeyValueComp
 	 *            Key for the stored value
 	 * @param value
 	 *            The value to store under the key
-	 * @throws IllegalArgumentException
-	 *             If the key and value types does not match
 	 */
 	void put(Class<? extends V> key, V value);
 

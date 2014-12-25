@@ -24,3 +24,8 @@ too tight. Code is written once and read many times, this is one ideology that
 I try to follow. This is something that should be taken into account only if
 you plan to make pull requests or become a contributor for this project. Yeah like
 that would ever happen.
+
+When there are enough JUnit tests to test the functionality then this library
+can achieve release status. Before that it will stay as snapshot. This is basically
+the release plan. This library is so small that there is no need to overshoot this
+part of the development.

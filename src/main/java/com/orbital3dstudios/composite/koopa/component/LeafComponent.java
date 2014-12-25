@@ -11,5 +11,5 @@ package com.orbital3dstudios.composite.koopa.component;
  */
 public interface LeafComponent extends CompositeComponent
 {
-
+	// Type interface
 }
