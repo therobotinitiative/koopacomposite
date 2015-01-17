@@ -8,7 +8,7 @@ import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
 /**
  * Instantiable class for using the {@link MapComponent} as composite in case
- * the {@link AbstractMapComposite} cannot be extended.
+ * the {@link AbstractMapComponent} cannot be extended.
  * 
  * @author Mikko Sirén
  * 
@@ -17,7 +17,7 @@ import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
  * @param <V>
  *            Type of the component in the composition
  */
-public final class CompositionMapComponent<V extends CompositeComponent> extends AbstractMapComposite<V>
+public final class CompositionMapComponent<V extends CompositeComponent> extends AbstractMapComponent<V>
 {
 	@Override
 	protected Map<Class<? extends V>, V> createMap()

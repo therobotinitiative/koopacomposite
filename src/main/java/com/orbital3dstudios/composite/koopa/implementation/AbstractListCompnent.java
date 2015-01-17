@@ -7,7 +7,7 @@ import java.util.List;
 import com.orbital3dstudios.composite.koopa.ListComponent;
 import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
-public abstract class AbstractListCompositeComponent<E extends CompositeComponent> extends AbstractCollectionComposite<E> implements ListComponent<E>
+public abstract class AbstractListCompnent<E extends CompositeComponent> extends AbstractCollectionComponent<E> implements ListComponent<E>
 {
 
 	public List<E> getComponents()

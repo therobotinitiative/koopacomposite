@@ -5,7 +5,7 @@ import java.util.Collection;
 import com.orbital3dstudios.composite.koopa.CollectionComponent;
 import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
-public abstract class AbstractCollectionComposite<E extends CompositeComponent> implements CollectionComponent<E>
+public abstract class AbstractCollectionComponent<E extends CompositeComponent> implements CollectionComponent<E>
 {
 	private final Collection<E> backEndCollection = createCollection();
 

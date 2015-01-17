@@ -7,7 +7,7 @@ import java.util.Set;
 import com.orbital3dstudios.composite.koopa.SetComponent;
 import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
-public abstract class AbstractSetComposite<E extends CompositeComponent> extends AbstractCollectionComposite<E> implements SetComponent<E>
+public abstract class AbstractSetComponent<E extends CompositeComponent> extends AbstractCollectionComponent<E> implements SetComponent<E>
 {
 
 	@Override

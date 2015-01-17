@@ -5,14 +5,14 @@ import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
 /**
  * Instantiable class for using the {@link SetComponent} as composite in case
- * the {@link AbstractSetComposite} cannot be extended.
+ * the {@link AbstractSetComponent} cannot be extended.
  * 
  * @author Mikko Sirén
  * 
  * @param <E>
  *            Type of the component in the composition
  */
-public final class CompositionSetComponent<E extends CompositeComponent> extends AbstractSetComposite<E>
+public final class CompositionSetComponent<E extends CompositeComponent> extends AbstractSetComponent<E>
 {
 	// Noyhing
 }

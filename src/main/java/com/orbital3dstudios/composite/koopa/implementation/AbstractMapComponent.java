@@ -7,7 +7,7 @@ import java.util.Map;
 import com.orbital3dstudios.composite.koopa.MapComponent;
 import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
-public abstract class AbstractMapComposite<V extends CompositeComponent> extends AbstractKeyValueComponent<V> implements MapComponent<V>
+public abstract class AbstractMapComponent<V extends CompositeComponent> extends AbstractKeyValueComponent<V> implements MapComponent<V>
 {
 	@Override
 	protected Map<Class<? extends V>, V> createMap()

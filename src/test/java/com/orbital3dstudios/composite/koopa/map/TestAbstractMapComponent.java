@@ -14,7 +14,7 @@ import com.orbital3dstudios.composite.koopa.MapComponent;
 import com.orbital3dstudios.composite.koopa.TypeOne;
 import com.orbital3dstudios.composite.koopa.TypeOneCompositeComponent;
 import com.orbital3dstudios.composite.koopa.TypeTwoCompositeComponent;
-import com.orbital3dstudios.composite.koopa.implementation.AbstractMapComposite;
+import com.orbital3dstudios.composite.koopa.implementation.AbstractMapComponent;
 
 @RunWith(JUnit4.class)
 public class TestAbstractMapComponent
@@ -24,13 +24,13 @@ public class TestAbstractMapComponent
 	@Before
 	public void setup()
 	{
-		test = new AbstractMapComposite<TypeOne>()
+		test = new AbstractMapComponent<TypeOne>()
 		{
 			// For test purposes
 		};
 	}
 
-	private final class TypeOneTest extends AbstractMapComposite<TypeOne> implements TypeOne
+	private final class TypeOneTest extends AbstractMapComponent<TypeOne> implements TypeOne
 	{
 		// Test component
 	}

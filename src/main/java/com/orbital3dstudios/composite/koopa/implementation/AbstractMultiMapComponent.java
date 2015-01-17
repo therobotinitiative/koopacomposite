@@ -9,7 +9,7 @@ import java.util.Set;
 import com.orbital3dstudios.composite.koopa.MultiMapComponent;
 import com.orbital3dstudios.composite.koopa.component.CompositeComponent;
 
-public class AbstractMultiMapComposite<V extends CompositeComponent> implements MultiMapComponent<V>
+public class AbstractMultiMapComponent<V extends CompositeComponent> implements MultiMapComponent<V>
 {
 	private final Map<Class<? extends V>, Set<V>> backEndMap = new HashMap<Class<? extends V>, Set<V>>();
 
