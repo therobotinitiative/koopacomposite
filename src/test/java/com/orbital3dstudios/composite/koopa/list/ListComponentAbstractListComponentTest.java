@@ -30,11 +30,11 @@ import com.orbital3dstudios.composite.koopa.implementation.AbstractListCompnent;
  * implementation would change then that would mean rewriting the test to follow
  * the new implementation which makes no sense.
  * 
- * @author Mikko SirŽn
+ * @author Mikko Sirï¿½n
  * 
  */
 @RunWith(JUnit4.class)
-public class TestAbstractListComponent
+public class ListComponentAbstractListComponentTest
 {
 	private ListComponent<TypeOne> test;
 
