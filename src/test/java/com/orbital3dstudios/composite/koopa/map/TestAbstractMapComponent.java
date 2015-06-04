@@ -3,18 +3,18 @@ package com.orbital3dstudios.composite.koopa.map;
 import java.util.Collection;
 import java.util.Set;
 
+import com.orbital3dstudios.composite.koopa.MapComponent;
+import com.orbital3dstudios.composite.koopa.TypeOne;
+import com.orbital3dstudios.composite.koopa.TypeOneCompositeComponent;
+import com.orbital3dstudios.composite.koopa.TypeTwoCompositeComponent;
+import com.orbital3dstudios.composite.koopa.implementation.AbstractMapComponent;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
-import com.orbital3dstudios.composite.koopa.MapComponent;
-import com.orbital3dstudios.composite.koopa.TypeOne;
-import com.orbital3dstudios.composite.koopa.TypeOneCompositeComponent;
-import com.orbital3dstudios.composite.koopa.TypeTwoCompositeComponent;
-import com.orbital3dstudios.composite.koopa.implementation.AbstractMapComponent;
 
 @RunWith(JUnit4.class)
 public class TestAbstractMapComponent
@@ -147,6 +147,30 @@ public class TestAbstractMapComponent
 		test.put(TypeOne.class, new TypeOneCompositeComponent());
 		test.put(TypeOneCompositeComponent.class, new TypeOneCompositeComponent());
 		Assert.assertEquals("Size after put two", 2, test.size());
+	}
+
+	@Test
+	public void testPutManyTimesWithOneKey()
+	{
+		test.put(TypeOne.class, new TypeOneCompositeComponent());
+		test.put(TypeOne.class, new TypeOneCompositeComponent());
+		test.put(TypeOne.class, new TypeOneCompositeComponent());
+		test.put(TypeOne.class, new TypeOneCompositeComponent());
+		Assert.assertEquals("size", 1, test.size());
+	}
+
+	@Test
+	public void testPutManyTimesWithOneKeyMultipleKeyTypes()
+	{
+		test.put(TypeOne.class, new TypeOneCompositeComponent());
+		test.put(TypeOne.class, new TypeOneCompositeComponent());
+		test.put(TypeOneCompositeComponent.class, new TypeOneCompositeComponent());
+		test.put(TypeOne.class, new TypeOneCompositeComponent());
+		test.put(TypeOne.class, new TypeOneCompositeComponent());
+		test.put(TypeOneCompositeComponent.class, new TypeOneCompositeComponent());
+		test.put(TypeOneCompositeComponent.class, new TypeOneCompositeComponent());
+		test.put(TypeOneCompositeComponent.class, new TypeOneCompositeComponent());
+		Assert.assertEquals("size", 2, test.size());
 	}
 
 	@Test(expected = ClassCastException.class)
