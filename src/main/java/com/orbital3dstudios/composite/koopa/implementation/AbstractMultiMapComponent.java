@@ -65,10 +65,6 @@ public class AbstractMultiMapComponent<V extends CompositeComponent> implements 
 
 	public void add(Class<? extends V> key, V value)
 	{
-		if (!value.getClass().isAssignableFrom(key))
-		{
-			throw new IllegalArgumentException("Key and value types does not match");
-		}
 		Set<V> values = getMap().get(key);
 		if (values == null)
 		{

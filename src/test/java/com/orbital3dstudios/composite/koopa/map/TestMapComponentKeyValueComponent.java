@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
-public class MapComponentKeyValueComponentTest extends AbstractTestKeyValueComponent<MapComponent<TypeOne>, TypeOne>
+public class TestMapComponentKeyValueComponent extends AbstractTestKeyValueComponent<MapComponent<TypeOne>, TypeOne>
 {
 
 	@Override

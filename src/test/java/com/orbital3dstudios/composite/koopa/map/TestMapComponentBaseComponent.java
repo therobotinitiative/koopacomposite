@@ -1,12 +1,11 @@
 package com.orbital3dstudios.composite.koopa.map;
 
-import com.orbital3dstudios.composite.koopa.AbstractTestMapBaseCompositeComponent;
 import com.orbital3dstudios.composite.koopa.MapComponent;
 import com.orbital3dstudios.composite.koopa.TypeOne;
 import com.orbital3dstudios.composite.koopa.TypeOneCompositeComponent;
 import com.orbital3dstudios.composite.koopa.implementation.AbstractMapComponent;
 
-public class MapComponentBaseComponentTest extends AbstractTestMapBaseCompositeComponent<MapComponent<TypeOne>>
+public class TestMapComponentBaseComponent extends AbstractTestMapBaseCompositeComponent<MapComponent<TypeOne>>
 {
 
 	@Override
